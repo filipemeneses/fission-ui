@@ -9,6 +9,7 @@ const { currentFunction } = storeToRefs(store)
 const isLoading = ref(false)
 const error = ref(null)
 const code = ref("")
+const $monaco = ref(null)
 
 store.$subscribe(({ events }) => {
   if (events.key !== "current") {
@@ -42,6 +43,12 @@ const updateFunctionCode = () => {
   setCurrentFunctionCode(code.value)
 }
 
+
+watchEffect(() => {
+  console.log($monaco.value)
+  window.m = $monaco.value
+})
+
 </script>
 
 <template>
@@ -52,7 +59,10 @@ const updateFunctionCode = () => {
     Loading
   </div>
   <div v-if="!isLoading && !error">
-    <textarea v-model="code" @input="updateFunctionCode"></textarea>
+    <MonacoEditor ref="$monaco" :options="{
+      theme: 'vs-dark',
+      automaticLayout: true,
+    }" v-model="code" lang="javascript" @input="updateFunctionCode" />
   </div>
   <div v-if="error">
     {{ error }}
