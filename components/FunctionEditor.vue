@@ -5,11 +5,9 @@ import { storeToRefs } from 'pinia'
 const store = useFunctionsStore()
 const { currentFunction } = storeToRefs(store)
 
-
 const isLoading = ref(false)
 const error = ref(null)
 const code = ref("")
-
 
 store.$subscribe(({ events }) => {
   if (events.key !== "current") {

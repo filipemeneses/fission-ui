@@ -22,11 +22,7 @@ const { currentFunction } = storeToRefs(useFunctionsStore())
           <FunctionEditor />
         </div>
         <div class="App__ide-preview">
-          <div class="App__bar">
-            <input />
-            <button>GET</button>
-          </div>
-          <iframe class="App__ide-contents" />
+          <FunctionPreview />
         </div>
       </div>
     </div>
@@ -72,16 +68,5 @@ const { currentFunction } = storeToRefs(useFunctionsStore())
 
 .App__ide-preview {
   flex: 1;
-}
-
-.App__bar {
-  height: 32px;
-
-}
-
-.App__ide-contents {
-  height: calc(100vh - 80px);
-  margin: 0;
-  border: 0;
 }
 </style>

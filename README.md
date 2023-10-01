@@ -73,3 +73,11 @@ bun run preview
 ```
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+
+## Fission
+
+### Forward-port 
+
+```sh
+kubectl --namespace fission port-forward $(kubectl --namespace fission get pod -l svc=router -o name) 9000:8888
+```
