@@ -4,6 +4,7 @@ import { storeToRefs } from 'pinia'
 
 const store = useFunctionsStore()
 const { currentFunction } = storeToRefs(store)
+const isLoading = ref(false)
 
 const updateFunction = async () => {
   const functionName = currentFunction.value?.name
@@ -11,6 +12,8 @@ const updateFunction = async () => {
   if (!functionName) {
     return;
   }
+
+  isLoading.value = true;
 
   const code = currentFunction.value.code
   const url = '/api/function?name=' + functionName
@@ -21,9 +24,13 @@ const updateFunction = async () => {
       code
     }
   });
+
+  isLoading.value = false;
 }
 
 </script>
 <template>
-  <button @click="updateFunction">Deploy</button>
+  <button @click="updateFunction" :disabled="isLoading">
+    {{ isLoading ? "Deploying" : "Deploy" }}
+  </button>
 </template>

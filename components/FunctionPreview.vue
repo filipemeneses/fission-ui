@@ -11,7 +11,7 @@ const store = useFunctionsStore()
 const { currentFunction } = storeToRefs(store)
 const $iframe = ref(null); // template ref
 const isLoading = ref(false);
-
+const iframeUrl = ref("")
 
 store.$subscribe(({ events }) => {
   if (events.key !== "current") {
@@ -20,7 +20,6 @@ store.$subscribe(({ events }) => {
 
   if (currentFunction.value?.name) {
     url.value = `${SERVER_URL}/${currentFunction.value.name}`
-    isLoading.value = true;
   }
 })
 
@@ -31,10 +30,11 @@ const refresh = () => {
     return
   }
 
-  const tmpUrl = url.value;
-  url.value = ""
+  isLoading.value = true;
+
+  iframeUrl.value = ""
   setTimeout(() => {
-    url.value = tmpUrl;
+    iframeUrl.value = url.value;
   })
 }
 
@@ -44,12 +44,14 @@ const finishedLoading = () => {
 </script>
 
 <template>
-  <div class="App__bar">
-    <input v-model="url" disabled />
-    <button @click="refresh">Refresh</button>
+  <div v-if="currentFunction?.name">
+    <div class="App__bar">
+      <input v-model="url" disabled />
+      <button @click="refresh">GET</button>
+    </div>
+    <div v-if="isLoading === true"> loading ... </div>
+    <iframe :src="iframeUrl" :key="iframeUrl" ref="$iframe" :onload="finishedLoading" class="App__ide-contents" />
   </div>
-  <div v-if="isLoading"> loading ...</div>
-  <iframe :src="url" :key="url" ref="$iframe" :onload="finishedLoading" class="App__ide-contents" />
 </template>
 
 
