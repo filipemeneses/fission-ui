@@ -19,7 +19,7 @@ store.$subscribe(({ events }) => {
 })
 
 const loadFunctionCode = async () => {
-  if (!currentFunction.value.name) {
+  if (!currentFunction.value?.name) {
     return
   }
   isLoading.value = true;

@@ -9,6 +9,9 @@ export const useFunctionsStore = defineStore({
     };
   },
   actions: {
+    clearCurrentFunction() {
+      this.current = null;
+    },
     setCurrentFunction(value: any) {
       this.current = value;
     },
@@ -20,7 +23,6 @@ export const useFunctionsStore = defineStore({
       this.current.code = code;
     },
     setFunctionsList(value: any[]) {
-      console.log(value);
       this.list.length = 0;
       this.list = this.list.concat(value);
     },
