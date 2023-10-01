@@ -11,6 +11,8 @@ body {
   --color-primary-hover: #0800ff;
   --color-font: #fff;
   --color-line: rgba(255, 255, 255, 0.2);
+  background-color: black;
+  color: #fff;
 }
 
 hr {
@@ -22,11 +24,11 @@ hr {
 
 button {
   background-color: black;
+  color: #fff;
   font-family: "Poppins", sans-serif;
 
   border: 0;
   font-size: 0.75rem;
-  color: #fff;
   padding: 0 24px;
   line-height: 48px;
   text-align: center;
@@ -47,18 +49,15 @@ button:active {
   filter: brightness(1.5);
 }
 
+::selection {
+  color: #fff;
+  background-color: var(--color-primary);
+}
+
 
 :modal {
   box-shadow: 0px 3px 5px rgba(0 0 0 / 0.2), 0px 15px 15px rgba(0 0 0 / 0.2);
   border-radius: 12px;
   border: 0;
-}
-
-
-@media (prefers-color-scheme: dark) {
-  body {
-    background-color: #04060c;
-    color: #fff;
-  }
 }
 </style>
