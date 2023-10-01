@@ -9,6 +9,7 @@ const { currentFunction } = storeToRefs(useFunctionsStore())
   <div class="App">
     <div class="App__list">
       <FunctionCreator />
+      <hr>
       <FunctionsList />
     </div>
     <div class="App__function-context">

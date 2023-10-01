@@ -13,6 +13,13 @@ body {
   --color-line: rgba(255, 255, 255, 0.2);
 }
 
+hr {
+  margin: 12px 0;
+  border: 1px solid var(--color-line);
+  padding: 0;
+
+}
+
 button {
   background-color: black;
   font-family: "Poppins", sans-serif;
