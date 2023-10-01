@@ -55,10 +55,7 @@ watchEffect(() => {
   <div v-if="!currentFunction">
     Select a function
   </div>
-  <div v-if="currentFunction && isLoading">
-    Loading
-  </div>
-  <div v-if="!isLoading && !error">
+  <div v-if="!error">
     <MonacoEditor ref="$monaco" :options="{
       theme: 'vs-dark',
       automaticLayout: true,

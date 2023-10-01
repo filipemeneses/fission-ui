@@ -62,6 +62,14 @@ const { currentFunction } = storeToRefs(useFunctionsStore())
   font-weight: normal;
   padding: 0;
   margin: 0;
+
+  display: flex;
+  align-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 0 0 0 12px;
+  font-weight: bold;
 }
 
 .App__ide {

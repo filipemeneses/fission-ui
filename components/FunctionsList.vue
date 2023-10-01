@@ -3,7 +3,7 @@ import { useFunctionsStore } from '~/store/fission'
 import { storeToRefs } from 'pinia'
 
 const store = useFunctionsStore()
-const { functionsList } = storeToRefs(store)
+const { functionsList, currentFunction } = storeToRefs(store)
 
 const assignCurrentFunction = (fn) => {
   store.setCurrentFunction(fn)
@@ -12,7 +12,8 @@ const assignCurrentFunction = (fn) => {
 
 <template>
   <div class="FunctionsList">
-    <div class="FunctionsList__item" v-for="fn in functionsList" @click="() => assignCurrentFunction(fn)">
+    <div class="FunctionsList__item" :class="{ active: currentFunction?.name === fn.name }" v-for="fn in functionsList"
+      @click="() => assignCurrentFunction(fn)">
       {{ fn.name }}
     </div>
   </div>
@@ -37,7 +38,8 @@ const assignCurrentFunction = (fn) => {
   user-select: none;
 }
 
-.FunctionsList__item:hover {
+.FunctionsList__item:hover,
+.FunctionsList__item.active {
   background-color: var(--color-line);
 }
 </style>
