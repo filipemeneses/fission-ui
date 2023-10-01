@@ -1,10 +1,14 @@
 <template>
   <div class="App">
     <div class="App__list">
-      <ul>
-        <li>1</li>
-        <li>2</li>
-      </ul>
+      <div>
+        <div>
+          1
+        </div>
+        <div>
+          2
+        </div>
+      </div>
     </div>
     <div class="App__function-context">
       <div class="App__header">
