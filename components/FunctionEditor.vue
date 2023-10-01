@@ -3,6 +3,7 @@ import { useFunctionsStore } from '~/store/fission'
 import { storeToRefs } from 'pinia'
 
 const store = useFunctionsStore()
+const { setCurrentFunctionCode } = store
 const { currentFunction } = storeToRefs(store)
 
 const isLoading = ref(false)
@@ -37,6 +38,9 @@ const loadFunctionCode = async () => {
   isLoading.value = false;
 }
 
+const updateFunctionCode = () => {
+  setCurrentFunctionCode(code.value)
+}
 
 </script>
 
@@ -48,7 +52,7 @@ const loadFunctionCode = async () => {
     Loading
   </div>
   <div v-if="!isLoading && !error">
-    <textarea v-model="code"></textarea>
+    <textarea v-model="code" @input="updateFunctionCode"></textarea>
   </div>
   <div v-if="error">
     {{ error }}

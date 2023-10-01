@@ -14,7 +14,7 @@ const { currentFunction } = storeToRefs(useFunctionsStore())
       <div class="App__header">
         <h1>{{ currentFunction?.name }}</h1>
         <div class="App__actions">
-          <button>Deploy</button>
+          <FunctionDeployer />
         </div>
       </div>
       <div class="App__ide">

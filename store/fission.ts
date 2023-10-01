@@ -12,6 +12,13 @@ export const useFunctionsStore = defineStore({
     setCurrentFunction(value: any) {
       this.current = value;
     },
+    setCurrentFunctionCode(code: string) {
+      if (!this.current) {
+        return;
+      }
+
+      this.current.code = code;
+    },
     setFunctionsList(value: any[]) {
       console.log(value);
       this.list.length = 0;
