@@ -1,14 +1,12 @@
+<script setup>
+const props = defineProps(['functions'])
+const functions = ref(props.functions)
+</script>
+
 <template>
   <div class="App">
     <div class="App__list">
-      <div>
-        <div>
-          1
-        </div>
-        <div>
-          2
-        </div>
-      </div>
+      <FunctionsList :functions="functions" />
     </div>
     <div class="App__function-context">
       <div class="App__header">
@@ -39,14 +37,6 @@
   width: 100vw;
 }
 
-.App__list {
-  width: 200px;
-}
-
-.App__list ul {
-  margin: 0;
-  padding: 0;
-}
 
 .App__function-context {
   flex: 1;
