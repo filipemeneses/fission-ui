@@ -31,21 +31,23 @@ export const sanitizeListStdout = (stdout: string) => {
 
   const headers = toArray(header).slice(0, 9);
 
-  const functions = fns.map((fnRow) => {
-    const fnList = toArray(fnRow);
+  const functions = fns
+    .filter((r) => r.trim() !== "")
+    .map((fnRow) => {
+      const fnList = toArray(fnRow);
 
-    return headers.reduce(
-      (obj: { [k: string]: any }, nextHeader, nextIndex) => {
-        obj[sanitizeName(nextHeader)] = sanitizeValue(
-          nextHeader,
-          fnList[nextIndex]
-        );
+      return headers.reduce(
+        (obj: { [k: string]: any }, nextHeader, nextIndex) => {
+          obj[sanitizeName(nextHeader)] = sanitizeValue(
+            nextHeader,
+            fnList[nextIndex]
+          );
 
-        return obj;
-      },
-      {}
-    );
-  });
+          return obj;
+        },
+        {}
+      );
+    });
 
   return functions;
 };

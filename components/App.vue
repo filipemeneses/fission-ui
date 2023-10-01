@@ -1,16 +1,18 @@
 <script setup>
-const props = defineProps(['functions'])
-const functions = ref(props.functions)
+import { useFunctionsStore } from '~/store/fission'
+import { storeToRefs } from 'pinia'
+
+const { currentFunction } = storeToRefs(useFunctionsStore())
 </script>
 
 <template>
   <div class="App">
     <div class="App__list">
-      <FunctionsList :functions="functions" />
+      <FunctionsList />
     </div>
     <div class="App__function-context">
       <div class="App__header">
-        <h1>function-name</h1>
+        <h1>{{ currentFunction?.name }}</h1>
         <div class="App__actions">
           <button>Deploy</button>
         </div>

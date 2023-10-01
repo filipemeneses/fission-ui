@@ -2,10 +2,10 @@ import { sanitizeListStdout } from "./sanitizeListStdout";
 
 describe("sanitizeListStdout", () => {
   it("should transform strout to JSON list", async () => {
-    const fixture = `
-    NAME           ENV    EXECUTORTYPE MINSCALE MAXSCALE MINCPU MAXCPU MINMEMORY MAXMEMORY SECRETS CONFIGMAPS NAMESPACE
+    const fixture = `NAME           ENV    EXECUTORTYPE MINSCALE MAXSCALE MINCPU MAXCPU MINMEMORY MAXMEMORY SECRETS CONFIGMAPS NAMESPACE
     hello          nodejs poolmgr      1        2        3      4      5         6                            default
-    hello-callback nodejs poolmgr      0        0        0      0      0         0                            default`.trim();
+    hello-callback nodejs poolmgr      0        0        0      0      0         0                            default
+    `;
 
     expect(sanitizeListStdout(fixture)).toEqual([
       {
