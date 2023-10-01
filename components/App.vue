@@ -37,6 +37,10 @@ const { currentFunction } = storeToRefs(useFunctionsStore())
   width: 100vw;
 }
 
+.App__list {
+  box-shadow: 1px 0 0 0 var(--color-line);
+  padding: 12px 0 0 0;
+}
 
 .App__function-context {
   flex: 1;
