@@ -20,6 +20,7 @@ store.$subscribe(({ events }) => {
 
   if (currentFunction.value?.name) {
     url.value = `${SERVER_URL}/${currentFunction.value.name}`
+    iframeUrl.value = "";
   }
 })
 
