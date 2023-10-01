@@ -19,7 +19,7 @@ const { currentFunction } = storeToRefs(useFunctionsStore())
       </div>
       <div class="App__ide">
         <div class="App__ide-editor">
-          <textarea></textarea>
+          <FunctionEditor />
         </div>
         <div class="App__ide-preview">
           <div class="App__bar">
@@ -68,11 +68,6 @@ const { currentFunction } = storeToRefs(useFunctionsStore())
 
 .App__ide-editor {
   flex: 2;
-}
-
-.App__ide-editor textarea {
-  width: 100%;
-  height: 100%;
 }
 
 .App__ide-preview {
