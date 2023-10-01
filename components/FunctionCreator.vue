@@ -61,7 +61,6 @@ const createFunction = async () => {
 
   <div class="FunctionCreator">
     <button @click="openModal">New function</button>
-
   </div>
 </template>
 
@@ -77,6 +76,10 @@ const createFunction = async () => {
   animation: show 1s ease normal;
 }
 
+.FunctionCreator button {
+  padding: 0 24px;
+  line-height: 48px;
+}
 
 @-webkit-keyframes show {
   from {

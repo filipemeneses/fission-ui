@@ -43,20 +43,14 @@ const updateFunctionCode = () => {
   setCurrentFunctionCode(code.value)
 }
 
-
-watchEffect(() => {
-  console.log($monaco.value)
-  window.m = $monaco.value
-})
-
 </script>
 
 <template>
   <div v-if="!currentFunction">
     Select a function
   </div>
-  <div v-if="!error">
-    <MonacoEditor ref="$monaco" :options="{
+  <div v-if="!error && code">
+    <MonacoEditor :options="{
       theme: 'vs-dark',
       automaticLayout: true,
     }" v-model="code" lang="javascript" @input="updateFunctionCode" />

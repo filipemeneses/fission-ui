@@ -19,23 +19,20 @@ hr {
   margin: 12px 0;
   border: 1px solid var(--color-line);
   padding: 0;
-
 }
 
 button {
   background-color: black;
   color: #fff;
   font-family: "Poppins", sans-serif;
-
   border: 0;
   font-size: 0.75rem;
-  padding: 0 24px;
-  line-height: 48px;
+  padding: 0 12px;
+  line-height: 32px;
   text-align: center;
   cursor: pointer;
   font-weight: 700;
   text-transform: uppercase;
-
   transition: box-shadow .12s ease;
   user-select: none;
 }
