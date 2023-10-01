@@ -1,4 +1,4 @@
-import { updateFissionFunction } from "../utils/fission/updateFissionFunction";
+import { createFissionFunction } from "../utils/fission/createFissionFunction";
 
 export default defineEventHandler(async (event) => {
   const { name } = getQuery(event);
@@ -11,7 +11,7 @@ export default defineEventHandler(async (event) => {
   }
 
   try {
-    await updateFissionFunction({
+    await createFissionFunction({
       name,
       code,
     });
