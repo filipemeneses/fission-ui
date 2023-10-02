@@ -47,10 +47,14 @@ const createFunction = async () => {
 <template>
   <dialog class="FunctionCreator__dialog" ref="$modal">
     <form method="dialog">
-      <button @click="closeModal">
-        Close
+      <button class="isIcon" @click="closeModal">
+        <IconClose />
       </button>
-      <p>{{ kebabCase(functionName) }}</p>
+
+      <p>
+        Your function will be created as:
+      <pre>{{ kebabCase(functionName) || "&nbsp;" }}</pre>
+      </p>
 
       <input v-model="functionName" />
       <button @click="createFunction" :disabled="isLoading">
@@ -74,6 +78,10 @@ const createFunction = async () => {
 
 .FunctionCreator__dialog[open] {
   animation: show 1s ease normal;
+}
+
+.FunctionCreator__dialog p {
+  color: #fff;
 }
 
 .FunctionCreator button {

@@ -85,12 +85,21 @@ input {
   color: #fff;
   border: 0;
   font-size: 14px;
-  outline-color: var(--color-primary);
+  outline: none;
+}
+
+input:focus {
+  box-shadow: inset 0 0 0 2px var(--color-primary);
 }
 
 :modal {
   box-shadow: 0px 3px 5px rgba(0 0 0 / 0.2), 0px 15px 15px rgba(0 0 0 / 0.2);
   border-radius: 12px;
   border: 0;
+}
+
+pre,
+code {
+  margin: 12px 0;
 }
 </style>
