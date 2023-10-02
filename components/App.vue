@@ -12,7 +12,13 @@ const { currentFunction } = storeToRefs(useFunctionsStore())
       <hr>
       <FunctionsList />
     </div>
-    <div class="App__function-context">
+    <div v-if="!currentFunction?.name" class="App__message">
+      <div>
+        Select a function or
+      </div>
+      <FunctionCreator label="create function" />
+    </div>
+    <div v-if="currentFunction?.name" class="App__function-context">
       <div class="App__header">
         <div class="App__header__title">
           <h1>{{ currentFunction?.name }}</h1>
@@ -50,6 +56,16 @@ const { currentFunction } = storeToRefs(useFunctionsStore())
 .App__list {
   box-shadow: 1px 0 0 0 var(--color-line);
   padding: 12px 0 0 0;
+  height: calc(100vh);
+}
+
+.App__message {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  padding-top: 96px;
 }
 
 .App__function-context {

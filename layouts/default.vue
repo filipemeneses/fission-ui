@@ -100,6 +100,8 @@ input:focus {
 
 pre,
 code {
-  margin: 12px 0;
+  margin: 12px 0 0 0;
+  padding: 12px;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 </style>

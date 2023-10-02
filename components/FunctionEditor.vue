@@ -46,9 +46,6 @@ const updateFunctionCode = () => {
 </script>
 
 <template>
-  <div v-if="!currentFunction">
-    Select a function
-  </div>
   <div v-if="!error && code">
     <MonacoEditor :options="{
       theme: 'vs-dark',

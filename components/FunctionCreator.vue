@@ -1,6 +1,8 @@
 <script setup>
 import { kebabCase } from "lodash"
 
+const { label } = defineProps(['label'])
+
 const isLoading = ref(false)
 const functionName = ref("")
 const $modal = ref(null)
@@ -51,20 +53,23 @@ const createFunction = async () => {
         <IconClose />
       </button>
 
-      <p>
+      <p class="FunctionCreator__info">
         Your function will be created as:
       <pre>{{ kebabCase(functionName) || "&nbsp;" }}</pre>
       </p>
 
-      <input v-model="functionName" />
-      <button @click="createFunction" :disabled="isLoading">
-        {{ isLoading ? "Creating" : "Create" }}
-      </button>
+      <div>
+        <input v-model="functionName" />
+        <button @click="createFunction" :disabled="isLoading || !functionName">
+          {{ isLoading ? "Creating" : "Create" }}
+        </button>
+      </div>
+
     </form>
   </dialog>
 
   <div class="FunctionCreator">
-    <button @click="openModal">New function</button>
+    <button @click="openModal">{{ label || "New function" }}</button>
   </div>
 </template>
 
@@ -87,6 +92,15 @@ const createFunction = async () => {
 .FunctionCreator button {
   padding: 0 24px;
   line-height: 48px;
+}
+
+.FunctionCreator__info {
+  box-shadow: inset 0 0 0 2px var(--color-line);
+  padding: 12px;
+}
+
+.FunctionCreator__info.isHidden {
+  opacity: 0;
 }
 
 @-webkit-keyframes show {
