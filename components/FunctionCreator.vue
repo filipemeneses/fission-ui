@@ -3,6 +3,7 @@ import { kebabCase } from "lodash"
 
 const { label } = defineProps(['label'])
 
+const env = ref("nodejs")
 const isLoading = ref(false)
 const functionName = ref("")
 const $modal = ref(null)
@@ -21,14 +22,29 @@ const createFunction = async () => {
 
   isLoading.value = true;
 
-  const code = `module.exports = async function(context) {
+  const boilerplateCodesByLanguage = {
+    nodejs: `module.exports = async function(context) {
     return {
         status: 200,
         body: "default function"
     };
 }
-`
-  const url = '/api/function?name=' + kebabCase(functionName.value)
+`,
+    go: `package main
+
+import (
+    "net/http"
+)
+
+// Handler is the entry point for this fission function
+func Handler(w http.ResponseWriter, r *http.Request) {
+    msg := "Hello, world!"
+    w.Write([]byte(msg))
+}`
+  }
+
+  const code = boilerplateCodesByLanguage[env.value]
+  const url = `/api/function?name=${kebabCase(functionName.value)}&env=${env.value}`
 
   await $fetch(url, {
     method: 'POST',
@@ -60,6 +76,10 @@ const createFunction = async () => {
 
       <div>
         <input v-model="functionName" />
+        <select v-model="env">
+          <option value="nodejs">Node.js</option>
+          <option value="go">Go</option>
+        </select>
         <button @click="createFunction" :disabled="isLoading || !functionName">
           {{ isLoading ? "Creating" : "Create" }}
         </button>

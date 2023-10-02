@@ -49,8 +49,7 @@ const updateFunctionCode = () => {
   <div v-if="!error && code">
     <MonacoEditor :options="{
       theme: 'vs-dark',
-      automaticLayout: true,
-    }" v-model="code" lang="javascript" @input="updateFunctionCode" />
+    }" v-model="code" :lang="currentFunction.env === 'nodejs' ? 'javascript' : 'go'" @input="updateFunctionCode" />
   </div>
   <div v-if="error">
     {{ error }}

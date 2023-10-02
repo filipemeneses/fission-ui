@@ -1,7 +1,7 @@
 import { createFissionFunction } from "../utils/fission/createFissionFunction";
 
 export default defineEventHandler(async (event) => {
-  const { name } = getQuery(event);
+  const { name, env } = getQuery(event);
   const { code } = await readBody(event);
 
   if (!name) {
@@ -14,6 +14,7 @@ export default defineEventHandler(async (event) => {
     await createFissionFunction({
       name,
       code,
+      env,
     });
 
     return {

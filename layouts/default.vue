@@ -79,7 +79,8 @@ dialog::backdrop {
   background-color: rgba(20, 20, 20, 0.7);
 }
 
-input {
+input,
+select {
   padding: 12px;
   background-color: black;
   color: #fff;
@@ -88,8 +89,13 @@ input {
   outline: none;
 }
 
-input:focus {
+input:focus,
+select:focus {
   box-shadow: inset 0 0 0 2px var(--color-primary);
+}
+
+select {
+  cursor: pointer;
 }
 
 :modal {
