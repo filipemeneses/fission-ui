@@ -9,13 +9,19 @@ const { currentFunction } = storeToRefs(store)
 const isLoading = ref(false)
 const error = ref(null)
 const code = ref("")
-const $monaco = ref(null)
+const lang = ref("javascript")
 
-store.$subscribe(({ events }) => {
-  if (events.key !== "current") {
-    return
-  }
+const langByEnv = {
+  python: 'python',
+  go: 'go',
+  nodejs: 'javascript',
+}
 
+
+watch(currentFunction, (newFn) => {
+  code.value = "";
+  error.value = "";
+  lang.value = langByEnv[newFn.env]
   loadFunctionCode();
 })
 
@@ -23,8 +29,8 @@ const loadFunctionCode = async () => {
   if (!currentFunction.value?.name) {
     return
   }
-  isLoading.value = true;
 
+  isLoading.value = true;
 
   const payload = await $fetch('/api/function?name=' + currentFunction.value.name);
 
@@ -39,17 +45,19 @@ const loadFunctionCode = async () => {
   isLoading.value = false;
 }
 
-const updateFunctionCode = () => {
-  setCurrentFunctionCode(code.value)
-}
+watch(code, setCurrentFunctionCode)
+loadFunctionCode()
+
+
+
 
 </script>
 
 <template>
-  <div v-if="!error && code">
+  <div v-if="!error && !isLoading && code">
     <MonacoEditor :options="{
       theme: 'vs-dark',
-    }" v-model="code" :lang="currentFunction.env === 'nodejs' ? 'javascript' : 'go'" @input="updateFunctionCode" />
+    }" v-model="code" :lang="lang" />
   </div>
   <div v-if="error">
     {{ error }}

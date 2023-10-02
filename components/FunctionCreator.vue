@@ -40,7 +40,9 @@ import (
 func Handler(w http.ResponseWriter, r *http.Request) {
     msg := "Hello, world!"
     w.Write([]byte(msg))
-}`
+}`,
+    python: `def main():
+    return "Hello, world!"`
   }
 
   const code = boilerplateCodesByLanguage[env.value]
@@ -79,6 +81,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
         <select v-model="env">
           <option value="nodejs">Node.js</option>
           <option value="go">Go</option>
+          <option value="python">Python</option>
         </select>
         <button @click="createFunction" :disabled="isLoading || !functionName">
           {{ isLoading ? "Creating" : "Create" }}

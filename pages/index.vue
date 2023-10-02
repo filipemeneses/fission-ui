@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import { useFunctionsStore } from '~/store/fission'
 
+useHead({
+  title: 'Fission UI',
+})
+
 let errorRef = ref()
 let calledApiRef = ref(false);
 

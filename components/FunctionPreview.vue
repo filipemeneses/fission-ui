@@ -14,11 +14,7 @@ const isLoading = ref(false);
 const hasContent = ref(false);
 const iframeUrl = ref("")
 
-store.$subscribe(({ events }) => {
-  if (events.key !== "current") {
-    return
-  }
-
+watch(currentFunction, () => {
   if (currentFunction.value?.name) {
     url.value = `${SERVER_URL}/${currentFunction.value.name}`
     iframeUrl.value = "";
