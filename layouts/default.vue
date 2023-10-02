@@ -11,6 +11,8 @@ body {
   --color-primary-hover: #0800ff;
   --color-font: #fff;
   --color-line: rgba(255, 255, 255, 0.2);
+  --color-danger: rgb(182, 19, 19);
+  --color-danger-line: rgb(129, 45, 45);
   background-color: black;
   color: #fff;
 }
@@ -28,7 +30,7 @@ button {
   border: 0;
   font-size: 0.75rem;
   padding: 0 12px;
-  line-height: 32px;
+  line-height: 42px;
   text-align: center;
   cursor: pointer;
   font-weight: 700;
@@ -37,11 +39,28 @@ button {
   user-select: none;
 }
 
-button:hover {
+button.isIcon {
+  padding: 0;
+  background-color: transparent;
+  font-size: 0;
+  line-height: 0;
+}
+
+button.isDanger {
+  background-color: var(--color-danger);
+  color: #fff;
+}
+
+button:hover:not(.isIcon):not(button[disabled]) {
   box-shadow: inset 0 0 0 2px var(--color-line);
 }
 
-button:active {
+button[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+button:active:not(button[disabled]) {
   transition: background-color .01s ease;
   filter: brightness(1.5);
 }
@@ -51,6 +70,23 @@ button:active {
   background-color: var(--color-primary);
 }
 
+dialog {
+  background-color: rgb(40, 40, 40);
+  border: 0;
+}
+
+dialog::backdrop {
+  background-color: rgba(20, 20, 20, 0.7);
+}
+
+input {
+  padding: 12px;
+  background-color: black;
+  color: #fff;
+  border: 0;
+  font-size: 14px;
+  outline-color: var(--color-primary);
+}
 
 :modal {
   box-shadow: 0px 3px 5px rgba(0 0 0 / 0.2), 0px 15px 15px rgba(0 0 0 / 0.2);

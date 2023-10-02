@@ -6,6 +6,7 @@ const store = useFunctionsStore()
 const { currentFunction } = storeToRefs(store)
 const isLoading = ref(false)
 
+
 const updateFunction = async () => {
   const functionName = currentFunction.value?.name
 
@@ -29,8 +30,20 @@ const updateFunction = async () => {
 }
 
 </script>
+
 <template>
   <button @click="updateFunction" :disabled="isLoading">
     {{ isLoading ? "Deploying" : "Deploy" }}
   </button>
 </template>
+
+<style scoped>
+button {
+  background-color: var(--color-primary);
+  transition: background-color .2s ease, filter .2s ease;
+}
+
+button:hover {
+  filter: brightness(1.2);
+}
+</style>

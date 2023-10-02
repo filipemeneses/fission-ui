@@ -14,8 +14,10 @@ const { currentFunction } = storeToRefs(useFunctionsStore())
     </div>
     <div class="App__function-context">
       <div class="App__header">
-        <h1>{{ currentFunction?.name }}</h1>
-        <div class="App__actions">
+        <div class="App__header__title">
+          <h1>{{ currentFunction?.name }}</h1>
+        </div>
+        <div class="App__actions" v-if="currentFunction?.name">
           <FunctionDeployer />
           <FunctionDeleter />
         </div>
@@ -38,6 +40,13 @@ const { currentFunction } = storeToRefs(useFunctionsStore())
   width: 100vw;
 }
 
+.App__actions {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}
+
 .App__list {
   box-shadow: 1px 0 0 0 var(--color-line);
   padding: 12px 0 0 0;
@@ -57,7 +66,6 @@ const { currentFunction } = storeToRefs(useFunctionsStore())
 }
 
 .App__header h1 {
-  flex: 1;
   font-size: 1rem;
   font-weight: normal;
   padding: 0;
@@ -70,6 +78,14 @@ const { currentFunction } = storeToRefs(useFunctionsStore())
   justify-content: center;
   padding: 0 0 0 12px;
   font-weight: bold;
+}
+
+.App__header__title {
+  flex: 1;
+  display: flex;
+  align-content: center;
+  flex-direction: row;
+  align-items: center;
 }
 
 .App__ide {
